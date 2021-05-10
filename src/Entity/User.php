@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -53,6 +55,21 @@ class User implements UserInterface
      * @ORM\Column(type="text")
      */
     private $address;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $galleries;
+
+    /**
+     * @ORM\OneToOne(targetEntity=ArtworkStorage::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $artworkStorage;
+
+    public function __construct()
+    {
+        $this->galleries = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -175,6 +192,53 @@ class User implements UserInterface
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Gallery[]
+     */
+    public function getGalleries(): Collection
+    {
+        return $this->galleries;
+    }
+
+    public function addGallery(Gallery $gallery): self
+    {
+        if (!$this->galleries->contains($gallery)) {
+            $this->galleries[] = $gallery;
+            $gallery->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGallery(Gallery $gallery): self
+    {
+        if ($this->galleries->removeElement($gallery)) {
+            // set the owning side to null (unless already changed)
+            if ($gallery->getUser() === $this) {
+                $gallery->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getArtworkStorage(): ?Collection
+    {
+        return $this->artworkStorage;
+    }
+
+    public function setCollection(ArtworkStorage $artworkStorage): self
+    {
+        // set the owning side of the relation if necessary
+        if ($artworkStorage->getUser() !== $this) {
+            $artworkStorage->setUser($this);
+        }
+
+        $this->artworkStorage = $artworkStorage;
 
         return $this;
     }
