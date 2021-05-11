@@ -19,13 +19,13 @@ class ArtworkStorage
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="collection", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="artworkStorage", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Artwork::class, mappedBy="collection")
+     * @ORM\OneToMany(targetEntity=Artwork::class, mappedBy="artworkStorage")
      */
     private $artworks;
 
