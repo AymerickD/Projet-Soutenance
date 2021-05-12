@@ -52,9 +52,9 @@ class ArtworkStorage
     }
 
     /**
-     * @return ArtworkStorage|Artwork[]
+     * @return ArrayCollection
      */
-    public function getArtworks(): ArtworkStorage
+    public function getArtworks(): ArrayCollection
     {
         return $this->artworks;
     }
@@ -63,7 +63,7 @@ class ArtworkStorage
     {
         if (!$this->artworks->contains($artwork)) {
             $this->artworks[] = $artwork;
-            $artwork->setCollection($this);
+            $artwork->setArtworkStorage($this);
         }
 
         return $this;
@@ -73,8 +73,8 @@ class ArtworkStorage
     {
         if ($this->artworks->removeElement($artwork)) {
             // set the owning side to null (unless already changed)
-            if ($artwork->getCollection() === $this) {
-                $artwork->setCollection(null);
+            if ($artwork->getArtworkStorage() === $this) {
+                $artwork->setArtworkStorage(null);
             }
         }
 
