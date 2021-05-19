@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20210510142359 extends AbstractMigration
+final class Version20210517144532 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,6 +25,7 @@ final class Version20210510142359 extends AbstractMigration
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE gallery (id INT AUTO_INCREMENT NOT NULL, user_id INT NOT NULL, name VARCHAR(255) NOT NULL, INDEX IDX_472B783AA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE gallery_category (gallery_id INT NOT NULL, category_id INT NOT NULL, INDEX IDX_33C1CB7A4E7AF8F (gallery_id), INDEX IDX_33C1CB7A12469DE2 (category_id), PRIMARY KEY(gallery_id, category_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, username VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, address LONGTEXT NOT NULL, UNIQUE INDEX UNIQ_8D93D649F85E0677 (username), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE artwork ADD CONSTRAINT FK_881FC5764E7AF8F FOREIGN KEY (gallery_id) REFERENCES gallery (id)');
         $this->addSql('ALTER TABLE artwork ADD CONSTRAINT FK_881FC57644286572 FOREIGN KEY (artwork_storage_id) REFERENCES artwork_storage (id)');
         $this->addSql('ALTER TABLE artwork_storage ADD CONSTRAINT FK_A73E996FA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
@@ -40,10 +41,13 @@ final class Version20210510142359 extends AbstractMigration
         $this->addSql('ALTER TABLE gallery_category DROP FOREIGN KEY FK_33C1CB7A12469DE2');
         $this->addSql('ALTER TABLE artwork DROP FOREIGN KEY FK_881FC5764E7AF8F');
         $this->addSql('ALTER TABLE gallery_category DROP FOREIGN KEY FK_33C1CB7A4E7AF8F');
+        $this->addSql('ALTER TABLE artwork_storage DROP FOREIGN KEY FK_A73E996FA76ED395');
+        $this->addSql('ALTER TABLE gallery DROP FOREIGN KEY FK_472B783AA76ED395');
         $this->addSql('DROP TABLE artwork');
         $this->addSql('DROP TABLE artwork_storage');
         $this->addSql('DROP TABLE category');
         $this->addSql('DROP TABLE gallery');
         $this->addSql('DROP TABLE gallery_category');
+        $this->addSql('DROP TABLE user');
     }
 }

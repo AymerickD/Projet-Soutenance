@@ -29,7 +29,9 @@ class UserFixtures extends Fixture {
             ->setEmail('admin@admin.com')
             ->setFirstname('admin')
             ->setLastname('admin')
-            ->setAddress('Lorem ipsum');
+            ->setAddress('Lorem ipsum')
+            ->setCountry('FR')
+        ;
 
         $manager->persist($admin);
         $manager->flush();

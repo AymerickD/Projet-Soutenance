@@ -66,9 +66,19 @@ class User implements UserInterface
      */
     private $artworkStorage;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $country;
+
     public function __construct()
     {
         $this->galleries = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->username;
     }
 
 
@@ -239,6 +249,18 @@ class User implements UserInterface
         }
 
         $this->artworkStorage = $artworkStorage;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
