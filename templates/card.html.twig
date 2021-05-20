@@ -1,0 +1,7 @@
+<div class="card my-2">
+    <img src="{{ vich_uploader_asset(artworks[0], 'imageFile') }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ artworks[0].gallery.user.username }}</h5>
+        <p class="card-text">{{ artworks[0].price | number_format(2, '.', ' ') }} €</p>
+    </div>
+</div>

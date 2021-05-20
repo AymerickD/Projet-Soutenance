@@ -116,7 +116,7 @@ class Artwork
 
     public function getPrice(): ?float
     {
-        return $this->price;
+        return ($this->price / 100);
     }
 
     public function setPrice(float $price): self

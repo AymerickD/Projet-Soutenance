@@ -48,7 +48,7 @@ class Gallery
 
     public function __toString()
     {
-        return $this->name;
+        return $this->name . " (" . $this->getUser()->getUsername() . ")";
     }
 
     public function getId(): ?int

@@ -71,9 +71,21 @@ class User implements UserInterface
      */
     private $country;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="follows")
+     */
+    private $followers;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="followers")
+     */
+    private $follows;
+
     public function __construct()
     {
         $this->galleries = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+        $this->follows = new ArrayCollection();
     }
 
     public function __toString()
@@ -261,6 +273,57 @@ class User implements UserInterface
     public function setCountry(string $country): self
     {
         $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(self $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(self $follower): self
+    {
+        $this->followers->removeElement($follower);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getFollows(): Collection
+    {
+        return $this->follows;
+    }
+
+    public function addFollow(self $follow): self
+    {
+        if (!$this->follows->contains($follow)) {
+            $this->follows[] = $follow;
+            $follow->addFollower($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollow(self $follow): self
+    {
+        if ($this->follows->removeElement($follow)) {
+            $follow->removeFollower($this);
+        }
 
         return $this;
     }
