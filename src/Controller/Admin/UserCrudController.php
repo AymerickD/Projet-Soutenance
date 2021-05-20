@@ -29,7 +29,14 @@ class UserCrudController extends AbstractCrudController
             TextField::new('lastname'),
             CountryField::new('country'),
             TextField::new('address'),
-            ArrayField::new('roles'),
+            ChoiceField::new('roles')
+                ->allowMultipleChoices()
+                ->autocomplete()
+                ->setChoices([
+                    'User' => 'ROLE_USER',
+                    'Creator' => 'ROLE_CREATOR',
+                    'Admin' => 'ROLE_ADMIN'
+            ]),
             AssociationField::new('galleries')
         ];
     }

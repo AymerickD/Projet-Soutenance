@@ -125,6 +125,15 @@
 
                 {% block body %}{% endblock %}
 </body>
+<div class="header-content">
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('admin') }}" type="button" class="btn btn-warning position-absolute mx-3">Admin Dashboard</a>
+    {% endif %}
+
+    <a class="text-decoration-none" href="{{ path('home') }}">
+        <h1 class="text-center my-5 text-dark">Crypt'Art</h1>
+    </a>
+</div>
 
 </html>
 =======
