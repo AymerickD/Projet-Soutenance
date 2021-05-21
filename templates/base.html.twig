@@ -8,7 +8,8 @@
     {# Run `composer require symfony/webpack-encore-bundle`
         and uncomment the following Encore helpers to start using Symfony UX #}
     {% block stylesheets %} {{ encore_entry_link_tags('app') }} {% endblock %}
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
     {% block javascripts %}
     {{ encore_entry_script_tags('app') }}
@@ -32,6 +33,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">En savoir plus</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('cart') }}">Panier</a>
                     </li>
                 </ul>
 
@@ -62,7 +66,7 @@
 
     <div class="header-content">
         {% if is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin') }}" type="button" class="btn btn-warning position-absolute mx-3">Admin Dashboard</a>
+        <a href="{{ path('admin') }}" type="button" class="btn btn-warning position-absolute mx-3">Admin Dashboard</a>
         {% endif %}
 
 =======
@@ -143,10 +147,14 @@
 
 
 </body>
+<<<<<<< Updated upstream
 =======
 
     {% block body %}{% endblock %}
 </body>
+
+>>>>>>> Stashed changes
+=======
 
 >>>>>>> Stashed changes
 </html>

@@ -26,8 +26,18 @@ class CartController extends AbstractController
             ];
         }
 
+        $total = 0;
+
+        foreach ($panierWithdata as $item) {
+            $totalItem = $item['artworks']->getPrice();
+            $total += $totalItem;
+        }
+
+        $session_total = $session->get('total', $total);
+
         return $this->render("cart/index.html.twig", [
             'items' => $panierWithdata,
+            'total' => $total,
         ]);
 
     }
@@ -63,4 +73,5 @@ class CartController extends AbstractController
 
         return $this->redirectToRoute("cart");
     }
+
 }

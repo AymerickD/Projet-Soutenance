@@ -6,26 +6,26 @@
 
 
 {% block body %}
-<div class="bg-light p-3">
+<div class="bg-light text-center p-3">
     <h1>Votre panier</h1>
 </div>
 
 {% if items | length > 0 %}
+
 <table class="table">
     <thead>
         <tr>
             <th>Artwork name</th>
             <th>Prix</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         {% for item in items %}
         <tr>
-            <td> {{ item.id }} </td>
-            <td> {{ item.id }} </td>
+            <td> {{ item.artworks.title }} </td>
+            <td> {{ item.artworks.price }} €</td>
             <td>
-                <a href="{{ path('cart_remove', {'id':item.id}) }}" class="btn btn-danger btn-sm">
+                <a href="{{ path('cart_remove', {'id':item.artworks.id}) }}" class="btn btn-danger btn-sm">
                     <i class="fas fa-trash"></i>
                 </a>
             </td>
@@ -34,8 +34,11 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="2">Total:</td>
-            <td></td>
+            <td colspan="1">Total:</td>
+            <td>{{ total }} €</td>
+            <td><a href="{{ path('payment')}}" class="btn btn-success btn-sm">
+                    Valider la commande
+                </a></td>
         </tr>
     </tfoot>
 </table>
