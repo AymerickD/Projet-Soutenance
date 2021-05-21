@@ -6,18 +6,28 @@ Crypt'Art - Accueil
 
 {% block body %}
 
-<div class="container">
-    <h2>Top de la semaine</h2>
+    <div class="container">
+        <h2>Top Crypt'Art de la semaine</h2>
 
-    <div class="row">
-        {% for i in 0..7 %}
-        <div class="col-lg-3 col-md-4">
-            {% include 'card.html.twig' %}
+        <div class="row">
+            {% for artwork in artworks %}
+                <div class="col-md-3 col-sm-4">
+                    {% include 'Card/artwork_card.html.twig' %}
+                </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+
+        <hr>
+
+        <h2>Top Creator de la semaine</h2>
+
+        <div class="row">
+            {% for i in 0..2 %}
+                <div class="col-md-4 col-sm-6">
+                    {% include 'Card/user_card.html.twig' %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-
-
-</div>
 
 {% endblock %}

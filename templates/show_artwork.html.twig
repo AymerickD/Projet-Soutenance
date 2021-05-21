@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <h2>{{ artwork.title }}</h2>
+
+        <img src="{{ vich_uploader_asset(artwork, 'imageFile') }}" alt="">
+
+        <h3>{{ artwork.price }} €</h3>
+
+        <p>{{ artwork.description }}</p>
+    </div>
+    
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+

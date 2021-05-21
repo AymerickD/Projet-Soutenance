@@ -48,10 +48,6 @@ class UserDashboardController extends AbstractController
      */
     public function createUser(Request $request, UserRepository $userRepository, EntityManagerInterface $manager)
     {
-        $user = $this->userRepository->find();
-        if ($user == null) {
-            throw new HttpException(404);
-        }
 
         $user = new User;
         $form = $this->createForm(UserType::class, $user);
@@ -65,7 +61,7 @@ class UserDashboardController extends AbstractController
             return $this->$user;
         }
 
-        return $this->render('userdashboard/create.html.twig', ['form_user' => $form->createView()]);
+        return $this->render('UserDashboard/create.html.twig', ['form_user' => $form->createView()]);
     }
 
     /**
@@ -89,7 +85,7 @@ class UserDashboardController extends AbstractController
         }
 
 
-        return $this->render('userdashboard/editProfils.html.twig', ['form_editProfils' => $form->createView()]);
+        return $this->render('UserDashboard/editProfils.html.twig', ['form_editProfils' => $form->createView()]);
     }
 
     /*public function editProfils(UserRepository $userRepository,)

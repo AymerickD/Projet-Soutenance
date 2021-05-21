@@ -1,0 +1,17 @@
+<div class="card my-2">
+    <img src="{{ vich_uploader_asset(users[0].galleries[0].artworks[0], 'imageFile') }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title m-0 text-center">@{{ users[0].username }}</h5>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col text-center">
+                <p class="h3 m-0">{{ users[0].followers | length }}</p>
+                <p class="m-0">Followers</p>
+            </div>
+            <div class="col d-flex justify-content-center align-items-center">
+                <a href="{{ path('addFollow', { 'user_id': users[0].id}) }}" class="btn btn-primary">Follow</a>
+            </div>
+        </div>
+    </div>
+</div>

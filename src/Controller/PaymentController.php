@@ -14,7 +14,27 @@ class PaymentController extends AbstractController
      */
     public function index(SessionInterface $session, ArtworkRepository $artworkRepository)
     {
-        return $this->render("payment/cart.html.twig");
+        $panier = $session->get('panier', []);
+
+        $panierWithdata = [];
+
+        foreach ($panier as $id => $id) {
+            $panierWithdata[] =
+                [
+                    'artworks' => $artworkRepository->find($id),
+                ];
+        }
+
+        $total = 0;
+
+        foreach ($panierWithdata as $item) {
+            $totalItem = $item['artworks']->getPrice();
+            $total += $totalItem;
+        }
+
+        return $this->render("Payment/cart.html.twig", [
+            'total' => $total
+        ]);
     }
 
 }
