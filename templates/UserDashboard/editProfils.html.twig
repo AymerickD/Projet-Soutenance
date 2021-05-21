@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du profile{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col w-75 mt-5">
+            {{form(form_editProfils)}}
+
+
+        </div>
+    </div>
+</div>
+{#<form class="container">
+
+    <div class="form-group">
+        <label for="inputUsername">User name</label>
+        <input type="text" class="form-control" id="inputUsername" placeholder="User name">
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="inputPassword">Password</label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="inputEmail">Email address</label>
+        <input type="email" class="form-control" id="inputEmail" placeholder="name@example.com">
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="inputFirstname">First name</label>
+        <input type="text" class="form-control" id="inputFirstname" placeholder="First name">
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="inputLastname">Last name</label>
+        <input type="text" class="form-control" id="inputLastname" placeholder="Last name">
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="selectCountry">Country</label>
+        <select class="form-control" id="selectCountry">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+        <label for="inputAdress">Adress</label>
+        <input type="text" class="form-control" id="inputAdress" placeholder="Adress">
+    </div>
+
+    <hr>
+
+    <a type="submit" class="btn btn-light mt-3" href={{ path('user_dashboard')}}>Create profils</a>
+
+</form>#}
+
+
+
+
+
+{% endblock %}
